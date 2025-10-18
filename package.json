@@ -1,0 +1,25 @@
+{
+  "name": "api-demo-axios",
+  "version": "1.0.0",
+  "description": "poc api ",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barry07/api-demo-axios.git"
+  },
+  "author": "Barry Horgan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/barry07/api-demo-axios/issues"
+  },
+  "homepage": "https://github.com/barry07/api-demo-axios#readme",
+  "dependencies": {
+    "axios": "^1.12.2",
+    "chai": "^6.2.0",
+    "chai-as-promised": "^8.0.2",
+    "mocha": "^11.7.4"
+  }
+}
