@@ -1,0 +1,12 @@
+{
+  "require": ["test/setup.js"],
+  "timeout": 10000,
+  "reporter": "mochawesome",
+  "reporter-option": [
+    "reportDir=reports",
+    "reportFilename=OD-Weather-Report",
+    "overwrite=true",
+    "html=true",
+    "json=true"
+  ]
+}

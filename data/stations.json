@@ -1,0 +1,11 @@
+{
+  "validStations": ["aeropuertopalma", "caboblanco"],
+  "invalidStations": [""],
+  "validStationName": ["cnarenal", "campastilla", "cncg", "cncoloniasp"],
+  "invalidStationName": [""],
+  "validBouyStations": ["boyaenderrocat ", "playadepalma"],
+  "validWindStations": ["EW013", "EW008"],
+  "validPeriods": ["latestdata", "latestday", "latesthour"],
+  "invalidPeriods": ["latestminute", "latestsecond", "latesth0ur"],
+  "missingStationPath": "/weather/aemetstation/lastdata/"
+}
