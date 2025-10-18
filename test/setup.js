@@ -1,13 +1,15 @@
 const chai = require("chai");
-const chaiAsPromised = require("chai-as-promised");
+//const chaiAsPromised = require("chai-as-promised");
+const chaiAsPromised = require("chai-as-promised").default || require("chai-as-promised");
+
 chai.use(chaiAsPromised);
 global.expect = chai.expect;
 
 require("dotenv").config();
-const BASE_URL = process.env.BASE_URL?.replace(":443", ""); // strip :443 if present
+const BASE_URL = process.env.BASE_URL?.replace(":443", "");
 
 if (!BASE_URL) {
-  throw new Error("BASE_URL not found in .env");
+  throw new Error("❌ BASE_URL not found in .env");
 }
 
 const defaultHeaders = {
@@ -16,15 +18,14 @@ const defaultHeaders = {
   "Accept-Language": "en-US,en;q=0.9",
 };
 
-// Global Mocha hooks
-exports.mochaHooks = {
-  beforeAll(done) {
-    this.timeout(10000); // 10 seconds for all tests
-    done();
-  }
-};
-
+// ✅ Export everything together correctly
 module.exports = {
   BASE_URL,
   defaultHeaders,
+  mochaHooks: {
+    beforeAll(done) {
+      this.timeout(10000);
+      done();
+    },
+  },
 };

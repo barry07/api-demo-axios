@@ -1,31 +1,33 @@
-const request = require('supertest');
+const axios = require("axios");
 const { BASE_URL, HEADERS } = require("./setup");
-//const BASE_URL = process.env.BASE_URL;
-//const { BASE_URL } = require("./setup");
+const stations = require("../data/stations.json");
+
 const API_PREFIX = "/v1.0/getWeatherDisplay/";
 
 if (!BASE_URL) {
   throw new Error("BASE_URL not found. Ensure it is defined in your .env file.");
 }
 
-// Import station IDs from external file
-const stations = require("../data/stations.json");
-
-describe('ODWeather API - getWeatherDisplay - endpoint', function () {
+describe("ODWeather API - getWeatherDisplay - endpoint", function () {
   this.timeout(20000); // give API time to respond
+
+  // Create an Axios instance with base URL and headers
+  const api = axios.create({
+    baseURL: BASE_URL,
+    headers: HEADERS,
+    validateStatus: () => true, // don’t throw for non-2xx responses
+  });
 
   stations.validStationName.forEach((stationName) => {
     it(`should return 200 response for valid station name ${stationName}`, async () => {
-      const responsePromise = request(BASE_URL)
-        .get(`${API_PREFIX}${stationName}/?period=latestdata/`);
-        console.log(`${BASE_URL}${API_PREFIX}${stationName}/?period=latestdata`)
+      const url = `${API_PREFIX}${stationName}/?period=latestdata/`;
+      console.log(`${BASE_URL}${url}`);
 
-      await expect(responsePromise).to.eventually.have.property('status', 200);
+      const res = await api.get(url);
 
-      const res = await responsePromise;
-
-      // Basic sanity check
-      expect(res.body).to.be.an('object');
+      // Assertions
+      expect(res.status).to.equal(200);
+      expect(res.data).to.be.an("object");
     });
-});
+  });
 });

@@ -20,6 +20,10 @@
     "axios": "^1.12.2",
     "chai": "^6.2.0",
     "chai-as-promised": "^8.0.2",
+    "dotenv": "^17.2.3",
     "mocha": "^11.7.4"
+  },
+  "devDependencies": {
+    "mochawesome": "^7.1.4"
   }
 }
